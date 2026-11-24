@@ -1,3 +1,5 @@
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/4ga-boards?utm_medium=integration&utm_source=button&utm_campaign=4ga-boards)
+
 # 4ga Boards on Railway
 
 Railway template for [4ga Boards](https://github.com/RARgames/4gaBoards), a real-time kanban board for teams (projects, boards, lists, cards, tasks, comments and attachments). MIT licence.
@@ -28,11 +30,17 @@ Railway template for [4ga Boards](https://github.com/RARgames/4gaBoards), a real
 
 The admin variables are read only when the database is empty (first boot). Later changes to them do nothing; change the password in the app.
 
+## After deploy
+
+1. Open the `4ga Boards` service, **Variables** tab, and copy `DEFAULT_ADMIN_PASSWORD`.
+2. Open the public URL and sign in as `admin` with that password.
+3. Change the admin e-mail and password under Settings, and add your team under Settings > Users. Public sign-up is off; turn it on (or limit it to e-mail domains) under Settings > Instance.
+
 Optional upstream settings (Google/GitHub/Microsoft/OIDC sign-in, SMTP through 4ga's notification service, upload limits) are documented at <https://docs.4gaboards.com/docs/dev/install/docker-vars>. Add them as variables on the `4ga Boards` service.
 
 ## Resources
 
-Runs on Railway's Free plan limits (0.5 GB RAM, 1 vCPU per service). The start script sizes the Node heap and the image-processing threads from the container's limits.
+Runs on Railway's Free plan limits (0.5 GB RAM, 1 vCPU per service, one volume). The start script sizes the Node heap and the image-processing threads from the container's limits. Tested at 0.5 GB / 1 vCPU: the app peaked at about 210 MB with four parallel 36-megapixel image uploads and a board export; Postgres at about 105 MB.
 
 ## Updates
 

@@ -11,3 +11,4 @@ First release of the template.
 - The admin account is created on first boot with a generated password; public sign-up is off.
 - Health check at `/healthz` (Railway rejects hyphens in health-check paths).
 - Database migrations run on every start, under a lock, before the server opens its port.
+- README: Deploy on Railway button (template code `4ga-boards`) and after-deploy steps.
