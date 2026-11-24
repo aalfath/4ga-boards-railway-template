@@ -11,7 +11,7 @@ Railway template for [4ga Boards](https://github.com/RARgames/4gaBoards), a real
 
 - App version: **4ga Boards 3.3.16**, official image `ghcr.io/rargames/4gaboards:3.3.16@sha256:3638be98c24c8c30c6185c1c8990a8a62b6bd13c0bfcc299a18dc133226b80d7`.
 - Uploads (avatars, project background images, card attachments) live on the app's volume at `/app/data`; everything else is in Postgres.
-- Health check: `GET /api/core-settings-public` (answers without login once the database is ready).
+- Health check: `GET /healthz`, which the image maps to upstream's public settings action (it reads the database and answers without login).
 
 ## Variables
 

@@ -10,6 +10,12 @@ USER root
 # silently falling back to a weak secret.
 RUN rm /app/.env
 
+# Railway rejects health-check paths that contain a hyphen, so expose upstream's
+# public, database-backed settings action (GET /api/core-settings-public) as
+# GET /healthz too. The build fails if upstream's routes file changes shape.
+RUN sed -i "s#^module.exports.routes = {#module.exports.routes = {\\n  'GET /healthz': 'core/show',#" /app/config/routes.js \
+ && grep -q "'GET /healthz': 'core/show'" /app/config/routes.js
+
 ENV NODE_ENV=production \
     TZ=UTC \
     PORT=1337 \
